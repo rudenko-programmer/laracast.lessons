@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @property string title
  * @property string description
+ *
  */
 class Project extends Model
 {
-    //
+
 }

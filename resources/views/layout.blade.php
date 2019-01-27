@@ -3,21 +3,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
     <title>@yield('title', 'Laracast lessons')</title>
 </head>
 <body>
+<div class="container">
+    <nav class="navbar">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/">Home</a>
+            <a class="navbar-item" href="/contact">Contact page</a>
+            <a class="navbar-item" href="/about">About us</a>
+            <a class="navbar-item" href="/projects">Projects</a>
+            <a class="navbar-item" href="/projects/create">Create new projects</a>
+        </div>
+    </nav>
 
-<ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/contact">Contact page</a></li>
-    <li><a href="/about">About us</a></li>
-    <li><a href="/projects">Projects</a></li>
-    <li><a href="/projects/create">Create new projects</a></li>
-</ul>
-
-@yield('content')
-
-
+</div>
+<div class="container">
+    @yield('content')
+</div>
 </body>
 </html>

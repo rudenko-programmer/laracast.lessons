@@ -1,6 +1,12 @@
-<?php
-/**
- * Разработал Максим Руденко
- * email: rudenko.programmer@gmail.com
- * Дата: 27.01.2019
- */
+@extends('layout')
+
+@section('title', 'Projects')
+
+@section('content')
+    <h1>Projects page</h1>
+    <ul>
+    @foreach($projects as $project)
+        <li>{{ $project->title }}</li>
+    @endforeach
+    </ul>
+@endsection

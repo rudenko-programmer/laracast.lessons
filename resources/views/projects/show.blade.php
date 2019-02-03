@@ -1,6 +1,8 @@
-<?php
-/**
- * Разработал Максим Руденко
- * email: rudenko.programmer@gmail.com
- * Дата: 28.01.2019
- */
+@extends('layout')
+
+@section('title', 'Projects')
+
+@section('content')
+    <h1 class="title">Project "{{ $project->title }}"</h1>
+    <p>{{ $project->description }}</p>
+@endsection

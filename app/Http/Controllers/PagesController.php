@@ -7,10 +7,7 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function home(Example $example){
-
-    	dd($example);
-
+    public function home(){
         $tasks = [
             'Go to the store',
             'Go to the market',

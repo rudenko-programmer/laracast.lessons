@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function (){
-	dd(app(\App\Services\Twitter::class));
-});
-//Route::get('/', 'PagesController@home');
+//Route::get('/', function (){
+//	dd(app(\App\Services\Twitter::class));
+//});
+Route::get('/', 'PagesController@home')->middleware('lessons');
 
 
 Route::get('/about', 'PagesController@about');

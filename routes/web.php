@@ -11,11 +11,10 @@
 |
 */
 
-app()->singleton('App\Example', function (){
-	return new \App\Example;
+Route::get('/', function (){
+	dd(app(\App\Services\Twitter::class));
 });
-
-Route::get('/', 'PagesController@home');
+//Route::get('/', 'PagesController@home');
 
 
 Route::get('/about', 'PagesController@about');

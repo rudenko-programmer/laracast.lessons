@@ -12,7 +12,7 @@ class ProjectCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $project;
+    public $project;
 
     /**
      * Create a new message instance.

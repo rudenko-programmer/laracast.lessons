@@ -11,13 +11,13 @@
         <div class="field">
             <label class="label" for="title">Title</label>
             <div class="control">
-                <input type="text" id="title" class="input" name="title" value="{{ $project->title }}">
+                <input type="text" id="title" class="input {{ $errors->has('title')?'is-danger':'' }}" name="title" value="{{ $errors->has('title')?old('title'):$project->title }}">
             </div>
         </div>
         <div class="field">
             <label class="label" for="description">Description</label>
             <div class="control">
-                <textarea name="description" id="description" class="textarea" >{{ $project->description }}</textarea>
+                <textarea name="description" id="description" class="textarea {{ $errors->has('description')?'is-danger':'' }}" >{{ $errors->has('description')?old('description'):$project->description }}</textarea>
             </div>
         </div>
         <div class="field">
@@ -25,6 +25,9 @@
                 <button type="submit" class="button is-link">Update Project</button>
             </div>
         </div>
+
+        @include('errors')
+
     </form>
     <form method="post" action="/projects/{{ $project->id }}" class="">
 

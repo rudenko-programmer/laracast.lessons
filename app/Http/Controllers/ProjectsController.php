@@ -13,33 +13,33 @@ class ProjectsController extends Controller
 	}
 
 	public function index(){
-
-    	$projects = Project::where('owner_id', auth()->id())->get();
-
-
-    	return view('projects.index', compact('projects'));
+    	return view('projects.index', [
+    		'projects' => auth()->user()->projects
+	    ]);
     }
 
     public function create(){
+	    $this->authorize('update', Project::class);
     	return view('projects.create');
     }
 
     public function store(){
+	    $this->authorize('update', Project::class);
 
-    	$attributes = request()->validate([
-    		'title' => ['required', 'min:3'],
-		    'description' => ['required', 'min:3']
-	    ]);
+    	$attributes = $this->validateProject();
 
     	$attributes['owner_id'] = auth()->id();
 
-//    	Project::create(request(['title', 'description']));
     	Project::create($attributes);
 
     	return redirect('/projects');
     }
 
     public function show(Project $project){
+//		abort_if($project->owner_id !== auth()->id(), 403);
+
+	    $this->authorize('update', $project);
+
 		return view('projects.show', compact('project'));
     }
 
@@ -47,20 +47,35 @@ class ProjectsController extends Controller
 	 * @param \App\Project $project
 	 *
 	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @throws \Illuminate\Auth\Access\AuthorizationException
 	 */
 	public function update(Project $project){
-		$project->title = request('title');
-		$project->description = request('description');
-		$project->save();
+		$this->authorize('update', $project);
+		$project->update($this->validateProject());
 		return redirect('/projects');
     }
 
-    public function destroy(Project $project){
+	/**
+	 * @param \App\Project $project
+	 *
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+	 * @throws \Illuminate\Auth\Access\AuthorizationException
+	 */
+	public function destroy(Project $project){
+	    $this->authorize('update', $project);
 	    $project->delete();
 	    return redirect('/projects');
     }
 
     public function edit(Project $project){
+	    $this->authorize('update', $project);
 		return view('projects.edit', compact('project'));
+    }
+
+    protected function validateProject(){
+		return request()->validate([
+			'title' => ['required', 'min:3'],
+			'description' => ['required', 'min:3']
+		]);
     }
 }

@@ -14,10 +14,10 @@
 use App\Notifications\SubscriptionRenewalFailed;
 use App\User;
 
-Route::get('/', function (){
-	User::first()->notify(new SubscriptionRenewalFailed());
-});
-//Route::get('/', 'PagesController@home');
+//Route::get('/', function (){
+//	User::first()->notify(new SubscriptionRenewalFailed());
+//});
+Route::get('/', 'PagesController@home');
 
 
 Route::get('/about', 'PagesController@about');

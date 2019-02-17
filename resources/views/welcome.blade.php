@@ -1,6 +1,10 @@
 @extends('layout')
 
 @section('content')
+    <div id="app">
+        <example-component></example-component>
+    </div>
+
     <h1>Mt {{$foo}} Website!</h1>
 
     <ul>

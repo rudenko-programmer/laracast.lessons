@@ -11,10 +11,13 @@
 |
 */
 
-//Route::get('/', function (){
-//	dd(app(\App\Services\Twitter::class));
-//});
-Route::get('/', 'PagesController@home');
+use App\Notifications\SubscriptionRenewalFailed;
+use App\User;
+
+Route::get('/', function (){
+	User::first()->notify(new SubscriptionRenewalFailed());
+});
+//Route::get('/', 'PagesController@home');
 
 
 Route::get('/about', 'PagesController@about');
